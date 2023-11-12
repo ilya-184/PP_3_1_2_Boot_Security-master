@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User page</title>
+</head>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+</style>
+<body>
+
+<h3>User Information</h3>
+<table>
+    <tr>
+        <th>Code</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>ID:</td>
+        <td><p th:text="${user.getId()}">VALUE</p></td>
+    </tr>
+    <tr>
+        <td>Username:</td>
+        <td><p th:text="${user.getUsername()}">VALUE</p></td>
+    </tr>
+    <tr>
+        <td>Surname:</td>
+        <td><p th:text="${user.getSurname()}">VALUE</p></td>
+    </tr>
+    <tr>
+        <td>Age:</td>
+        <td><p th:text="${user.getAge()}">VALUE</p></td>
+    </tr>
+
+</table>
+
+<hr/>
+<h3>Roles:</h3>
+<p th:each="role : ${userRoles}"
+   th:text="${role.getRole()}"
+   th:value="${role.getId()}"
+   th:field="*{user.getRoles()}">VALUE</p>
+
+
+<form th:method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
+
+</body>
+</html>

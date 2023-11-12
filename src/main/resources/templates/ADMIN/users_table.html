@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Table</title>
+</head>
+<body>
+<style>
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+        vertical-align: center;
+    }
+</style>
+<div>
+    <h3>User Table</h3>
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Age</th>
+            <th>Role</th>
+            <th>Actions</th>
+        </tr>
+
+        <tr th:each="user : ${users}">
+            <td th:utext="${user.getId()}">...</td>
+            <td th:utext="${user.getUsername()}">...</td>
+            <td th:utext="${user.getSurname()}">...</td>
+            <td th:utext="${user.getAge()}">...</td>
+            <td th:utext="${user.getRoles()}">...</td>
+
+            <td>
+                <form action="#" th:action="@{/admin/{id}/edit(id=${user.getId()})}" method="PATCH">
+                    <button type="submit">
+                        <i>Edit</i>
+                    </button>
+                </form>
+            </td>
+
+            <td>
+<!--                <form action="#" th:action="@{/admin/{id}(id=${user.getId()})}" method="DELETE">-->
+<!--                    <button type="submit">-->
+<!--                        <i>Delete</i>-->
+<!--                    </button>-->
+<!--                </form>-->
+
+
+                <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}"><br>
+                    <input type="submit" value="Delete">
+                </form>
+
+
+
+            </td>
+        </tr>
+</table>
+</div>
+
+<br>
+
+<form method="GET" action="/admin/registration">
+    <button type="submit">Create new user</button>
+</form>
+<br>
+<form th:method="POST" th:action="@{/logout}">
+    <input type="submit" value="Logout"/>
+</form>
+
+</body>
+</html>
