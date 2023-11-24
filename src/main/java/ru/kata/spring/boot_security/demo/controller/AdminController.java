@@ -56,13 +56,13 @@ public class AdminController {
         return "/ADMIN/users_table";
     }
 
-    @GetMapping("/{id}")
-    public String  show(@PathVariable("id") Long id, Model model) {
-        User user = userService.getUserById(id);
-        model.addAttribute("user", user);
-        model.addAttribute("userRoles", user.getRoles());
-        return "/ADMIN/show";
-    }
+//    @GetMapping("/{id}")
+//    public String  show(@PathVariable("id") Long id, Model model) {
+//        User user = userService.getUserById(id);
+//        model.addAttribute("user", user);
+//        model.addAttribute("userRoles", user.getRoles());
+//        return "/ADMIN/show";
+//    }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model, @PathVariable("id") Long id) {
